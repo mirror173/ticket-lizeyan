@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>李夫人，您好！</title>
+  <title>是我，李泽言</title>
   <style>
     * {
       margin: 0;
@@ -12,54 +12,199 @@
     }
     
     body {
-      font-family: 'Microsoft YaHei', Arial, sans-serif;
-      text-align: center;
-      padding: 40px 20px;
-      background: white;
+      font-family: 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif;
+      background: #000;
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      color: #333;
+      padding: 20px;
+      position: relative;
+    }
+    
+    /* 电影胶片容器 */
+    .film-strip {
+      position: relative;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+      padding: 50px 40px;
+      border-radius: 8px;
+      box-shadow: 
+        0 0 50px rgba(255, 255, 255, 0.2),
+        inset 0 0 100px rgba(0, 0, 0, 0.8);
+      max-width: 800px;
+      width: 100%;
+      z-index: 2;
+      overflow: hidden;
+    }
+    
+    /* 胶片孔 */
+    .film-strip::before,
+    .film-strip::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 30px;
+      background: repeating-linear-gradient(
+        90deg,
+        #000 0px,
+        #000 12px,
+        #333 12px,
+        #333 20px,
+        #000 20px,
+        #000 32px
+      );
+      background-size: 32px 30px;
+    }
+    
+    .film-strip::before {
+      top: -15px;
+    }
+    
+    .film-strip::after {
+      bottom: -15px;
     }
     
     .content {
-      background: white;
-      color: #333;
-      padding: 40px;
-      border-radius: 20px;
-      max-width: 600px;
-      width: 100%;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 3;
     }
     
+    /* 标题 */
     h1 {
-      margin-bottom: 20px;
-      color: black;
-      font-size: 32px;
+      font-size: 56px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 30px;
+      text-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.8),
+        0 0 40px rgba(255, 255, 255, 0.5),
+        0 0 60px rgba(255, 255, 255, 0.3),
+        2px 2px 4px rgba(0, 0, 0, 0.9);
+      letter-spacing: 6px;
+      position: relative;
     }
     
+    /* 标题下划线 */
+    h1::after {
+      content: '';
+      display: block;
+      width: 200px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #fff, transparent);
+      margin: 25px auto;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    }
+    
+    /* 文字内容 */
     p {
-      font-size: 18px;
-      line-height: 1.8;
-      margin-bottom: 20px;
-      color: #555;
+      font-size: 24px;
+      line-height: 2;
+      color: #f0f0f0;
+      margin-bottom: 50px;
+      font-style: italic;
+      text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.5),
+        2px 2px 4px rgba(0, 0, 0, 0.9);
+      position: relative;
     }
     
-    img {
-      max-width: 100%;
+    /* 视频容器 */
+    .image-container {
+      position: relative;
+      margin-top: 30px;
+    }
+    
+    .image-container::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      background: linear-gradient(45deg, 
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.1) 100%);
       border-radius: 12px;
-      margin-top: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      z-index: -1;
+    }
+    
+    video {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 8px;
+      box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(255, 255, 255, 0.1);
+      display: block;
+      object-fit: cover;
+      background: #000;
+    }
+    
+    /* 底部装饰 */
+    .film-info {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 2px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+      letter-spacing: 4px;
+      position: relative;
+    }
+    
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 36px;
+        letter-spacing: 3px;
+      }
+      
+      p {
+        font-size: 18px;
+      }
+      
+      .content {
+        padding: 30px 20px;
+      }
+      
+      .film-strip {
+        padding: 30px 20px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="content">
-    <h1>是我，李泽言</h1>
-    <p>我的心，是一个笨蛋的重量。</p>
-    <img src=""JINJI.png" alt="图片">
+  <!-- 电影胶片 -->
+  <div class="film-strip">
+    <div class="content">
+      <h1>是我，李泽言。</h1>
+      <p>帧帧如诗，念念不忘。</p>
+      
+      <div class="image-container">
+        <div class="image-wrapper">
+          <video 
+            src="https://raw.githubusercontent.com/mirror173/ticket-lizeyan/main/lzy_jinji_video.mp4" 
+            autoplay 
+            loop 
+            muted 
+            playsinline
+            controls
+            style="width: 100%; border-radius: 8px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 255, 255, 0.1);">
+          </video>
+        </div>
+      </div>
+      
+      <div class="film-info">
+        <span>✦</span>
+        <span>FILM FESTIVAL</span>
+        <span>✦</span>
+      </div>
+    </div>
   </div>
 </body>
 </html>
